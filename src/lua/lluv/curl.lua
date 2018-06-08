@@ -1,12 +1,24 @@
+------------------------------------------------------------------
+--
+--  Author: Alexey Melnichuk <alexeymelnichuck@gmail.com>
+--
+--  Copyright (C) 2017-2018 Alexey Melnichuk <alexeymelnichuck@gmail.com>
+--
+--  Licensed according to the included 'LICENSE' document
+--
+--  This file is part of lua-lluv-curl library.
+--
+------------------------------------------------------------------
+
 local curl         = require "cURL.safe"
 local uv           = require "lluv"
 local ut           = require "lluv.utils"
 local EventEmitter = require "EventEmitter".EventEmitter
 
-local _VERSION   = "0.1.0"
+local _VERSION   = "0.1.1"
 local _NAME      = "lluv-curl"
 local _LICENSE   = "MIT"
-local _COPYRIGHT = "Copyright (c) 2017 Alexey Melnichuk"
+local _COPYRIGHT = "Copyright (c) 2017-2018 Alexey Melnichuk"
 
 local function super(class, self, method, ...)
   if class.__base and class.__base[method] then
@@ -605,8 +617,6 @@ function cUrlMulti:close(err)
   self._timer:close()
 
   self._timer, self._qeasy, self._multi = nil
-
-  self:emit('close')
 end
 
 function cUrlMulti:add_handle(easy, callback)
